@@ -119,3 +119,121 @@ header {
 .nav-up {
     transform: translateY(-100%);
 }
+
+//canvas
+.canvas {
+    background: #e8eaec; // padding: 20px;
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .inside_canvas {
+        position: relative;
+        width: 50%;
+        height: 50%; // background: rgba(239, 225, 225, 0.53); 
+        // -webkit-transform: translate(-50%, -50%);
+        // transform: translate(-50%, -50%);
+        top: 0px;
+        left: 0px;
+        .layer1,
+        .layer2,
+        .layer3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+    img {
+        max-height: 500px; // max-width: 90%;
+    }
+    .background {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.swing_details {
+    right: 20px;
+    position: absolute;
+    padding: 20px;
+    margin: 25px;
+    background: #f4f4f3;
+    height: 590px;
+    padding-top: 10px;
+    width: 300px;
+}
+
+.st {
+    color: #9a5276;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.img_icon {
+    margin: 10px 0px;
+    img {
+        display: inline-block;
+        margin-left: 5px;
+        width: 50px;
+        height: 30px;
+        object-fit: fill;
+        &:first-child {
+            margin-left: 0px;
+        }
+    }
+}
+
+.selected {
+    border: 2px solid #c3b6a9;
+}
+
+.select-frame {
+    background-image: url("../img/frame/arrow-down.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 98%;
+    -webkit-appearance: button;
+    background-color: rgba(216, 214, 212, 0.32);
+    width: 80%;
+    display: inline-block;
+}
+
+.frame_icon {
+    width: 15%;
+    padding: 4px;
+    height: 34px;
+    display: inline-block;
+    background-color: #d8d6d4;
+}
+
+.nodragimg {
+    -webkit-user-drag: none;
+}
+
+.pd_t10 {
+    padding-top: 10px;
+}
+
+.trim_color {
+    width: 40px;
+    height: 25px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.swing_icon {
+    img {
+        width: 60px;
+        height: 25px;
+        display: inline-block;
+        margin: 5px;
+        background: white;
+        object-fit: cover;
+    }
+}
+
+.cur_mov {
+    cursor: move;
+}
