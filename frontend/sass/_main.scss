@@ -11,7 +11,7 @@ $brand-info: #000072 !default;
 
 @import "other/font-fix";
 body {
-    padding-top: 70px;
+    padding-top: 10px;
 }
 
 img.loading {
@@ -130,8 +130,8 @@ header {
     background-size: cover;
     .inside_canvas {
         position: relative;
-        width: 50%;
-        height: 50%; // background: rgba(239, 225, 225, 0.53); 
+        width: 35%;
+        height: 35%; // background: rgba(239, 225, 225, 0.53); 
         // -webkit-transform: translate(-50%, -50%);
         // transform: translate(-50%, -50%);
         top: 0px;
@@ -161,7 +161,10 @@ header {
     background: #f4f4f3;
     height: 590px;
     padding-top: 10px;
-    width: 300px;
+    width: 320px;
+    top: 0;
+    margin-top: 5px;
+    overflow: scroll;
 }
 
 .st {
@@ -176,13 +179,25 @@ header {
     img {
         display: inline-block;
         margin-left: 5px;
-        width: 50px;
-        height: 30px;
+        width: 45px;
+        height: 45px;
         object-fit: fill;
         &:first-child {
             margin-left: 0px;
         }
     }
+}
+
+.plus_icon {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 39px;
+    background: #cdcdcd;
+    font-size: 23px;
+    color: white;
 }
 
 .selected {
@@ -218,15 +233,15 @@ header {
 
 .trim_color {
     width: 40px;
-    height: 25px;
+    height: 40px;
     display: inline-block;
     margin: 5px;
 }
 
 .swing_icon {
     img {
-        width: 60px;
-        height: 25px;
+        width: 40px;
+        height: 40px;
         display: inline-block;
         margin: 5px;
         background: white;
@@ -236,4 +251,29 @@ header {
 
 .cur_mov {
     cursor: move;
+}
+
+.header_icon {
+    margin: 5px auto;
+    width: 80px;
+}
+
+.frame_select {
+    .bg {
+        background: rgba(216, 214, 212, 0.6);
+    }
+    .dropdown-menu {
+        padding: 0px;
+    }
+    .frame_list {
+        padding: 5px;
+        cursor: default;
+        &:hover {
+            background: rgba(216, 214, 212, 0.6);
+        }
+    }
+}
+
+.overflow {
+    overflow: hidden;
 }

@@ -1,7 +1,7 @@
-<div class="container_fluid">
+<div class="text-center"><img class="img-responsive header_icon" src="img/icon.jpg" title="icon" /></div>
+<div class="container_fluid overflow">
     <div class="row">
         <div class="col-md-12">
-            <div class="text-center"> Create Your Own SwingSet</div>
             <div class="canvas" style="background-image:url({{selectedValue.s_background}}) ;background-repeat: no-repeat;background-size: cover;background-position: bottom;">
                 <!-- <img class="img-responsive background" ng-if="selectedValue.background" ng-src="{{selectedValue.background}}"> -->
                 <div class="inside_canvas cur_mov" ng-mousedown="mousedownfun($event)" ng-mouseup="mouseupfun()" ng-mouseleave="mouseleavefun()"
@@ -13,85 +13,100 @@
                     <img class="img-responsive layer3 nodragimg" ng-if="selectedValue.s_swing2" ng-src="{{selectedValue.s_swing2.img}}">
                     <img class="img-responsive layer3 nodragimg" ng-if="selectedValue.s_swing3" ng-src="{{selectedValue.s_swing3.img}}">
                 </div>
+                <div class="swing_details">
+                    <div class="st"> VIEW SWING SET IN YOUR GARDEN</div>
+
+                    <div class="">
+                        <div>BACKGROUND</div>
+                        <div class="img_icon"><img ng-repeat="x in background" ng-src="{{x.url}}" ng-class="{'selected':select_b[$index]}" ng-click="selectedValue.s_background=x.url;changeselect($index)">
+                            <!-- <img ng-src="img/plus.png" style="border: 2px solid #d8d6d4;"> -->
+                            <div class="plus_icon"><span>+</span></div>
+                        </div>
+
+                    </div>
+                    <div class="pd_t10">
+                        <!-- custom_swingList contains all the details needed in json format -->
+
+                        <div>FRAME SIZE</div>
+
+                        <!-- <img class="frame_icon" src="{{selectedValue.s_frame.img}}"></img>
+                        <select class="select-frame form-control form-control-lg " ng-model="selectedValue.s_frame" ng-options="frame.frame for frame in custom_swingList "
+                            ng-change="empty_SelectedValue()">
+                         </select> -->
+                        <div class="frame_select">
+                            <div class="dropdown">
+                                <div class="dropdown-toggle bg " type="button" data-toggle="dropdown">
+                                    <img class="frame_icon img-responsive" src="{{selectedValue.s_frame.icon}}"></img>
+                                    <span class="dropdown_">{{selectedValue.s_frame.frame}}</span>
+                                    <span class="caret"></span></div>
+                                <ul class="dropdown-menu">
+                                    <li class="frame_list" ng-repeat="x in custom_swingList" ng-click="selectedValue.s_frame=x;empty_SelectedValue()"><img class="frame_icon img-responsive" src="{{x.icon}}"></img> <span class="drop_text"> {{x.frame}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd_t10" ng-show="selectedValue.s_frame">
+                        <!-- loop trim from above select frame(from selectedValue.frame) -->
+                        <div>TRIM COLOR</div>
+                        <div>
+                            <div class="trim_color" ng-class="{'selected':selectedValue.s_trim==x}" ng-repeat="x in selectedValue.s_frame.trim" title="{{x.name}}"
+                                uib-tooltip="{{x.name}}" ng-style="{'background':x.color}" ng-click="selectedValue.s_trim=x;empty_Selectedtrim()">
+                            </div>
+                        </div>
+                        <!-- <select class="select-trim form-control form-control-lg select-trim" ng-model="selectedValue.trim" ng-options="x.name for x in selectedValue.frame.trim"> </select>-->
+
+
+                    </div>
+                    <div class="pd_t10" ng-show="selectedValue.s_frame.slide">
+                        <!-- loop trim from above select frame(from selectedValue.frame) -->
+                        <div>SLIDE COLOR</div>
+                        <div>
+                            <div class="trim_color" ng-class="{'selected':selectedValue.s_slide==x}" ng-repeat="x in selectedValue.s_frame.slide" uib-tooltip="{{x.name}}"
+                                title="{{x.name}}" ng-style="{'background':x.color}" ng-click="selectedValue.s_slide=x;">
+                            </div>
+                        </div>
+                        <!-- <select class="select-trim form-control form-control-lg select-trim" ng-model="selectedValue.trim" ng-options="x.name for x in selectedValue.frame.trim"> </select>-->
+
+
+                    </div>
+
+                    <div class="pd_t10" ng-show="selectedValue.s_trim.swing">
+                        <!-- loop Swing from above select trim(from selectedValue.trim) -->
+                        <div>SWING 1</div>
+                        <div class="swing_icon">
+                            <img ng-repeat="x in selectedValue.s_trim.swing" ng-class="{'selected':selectedValue.s_swing==x}" ng-src="{{x.icon}}" ng-click="selectedValue.s_swing=x;(x.hidenext)? (selectedValue.s_swing2=null): (selectedValue.s_swing2)"
+                                title="{{x.name}}" uib-tooltip="{{x.name}}"> </div>
+                        <!-- * set selectedValue.s_swing2  to 'null' so that there wont be confilt when user select item in  swing2 and then select swing1() -->
+                        <!-- <select class="select-trim form-control form-control-lg select-swing" ng-if="selectedValue.trim && selectedValue.frame" ng-model="selectedValue.swing"
+                    ng-options="x.name disable when x.disabled for x in selectedValue.trim.swing"> </select>-->
+
+                    </div>
+                    <div class="pd_t10" ng-show="selectedValue.s_trim.swing2 && !selectedValue.s_swing.hidenext">
+                        <!-- loop Swing from above select trim(from selectedValue.trim) -->
+                        <div>SWING 2</div>
+                        <div class="swing_icon">
+                            <img ng-repeat="x in selectedValue.s_trim.swing2" ng-class="{'selected':selectedValue.s_swing2==x}" ng-src="{{x.icon}}" ng-click="selectedValue.s_swing2=x;(x.hidenext)?(selectedValue.s_swing3=null): selectedValue.s_swing3"
+                                title="{{x.name}}" uib-tooltip="{{x.name}}"> </div>
+                        <!-- <select class="select-trim form-control form-control-lg select-swing" ng-if="selectedValue.trim && selectedValue.frame" ng-model="selectedValue.swing"
+                    ng-options="x.name disable when x.disabled for x in selectedValue.trim.swing"> </select>-->
+
+                    </div>
+                    <div class="pd_t10" ng-show="selectedValue.s_trim.swing3 && !selectedValue.s_swing2.hidenext">
+                        <!-- loop Swing from above select trim(from selectedValue.trim) -->
+                        <div ng-if="!selectedValue.s_swing.hidenext">SWING 3</div>
+                        <div ng-if="selectedValue.s_swing.hidenext">SWING 2</div>
+                        <div class="swing_icon">
+                            <img ng-repeat="x in selectedValue.s_trim.swing3" ng-class="{'selected':selectedValue.s_swing3==x}" ng-src="{{x.icon}}" ng-click="selectedValue.s_swing3=x"
+                                title="{{x.name}}" uib-tooltip="{{x.name}}"> </div>
+                        <!-- <select class="select-trim form-control form-control-lg select-swing" ng-if="selectedValue.trim && selectedValue.frame" ng-model="selectedValue.swing"
+                    ng-options="x.name disable when x.disabled for x in selectedValue.trim.swing"> </select>-->
+
+                    </div>
+
+                </div>
             </div>
         </div>
-        <div class="swing_details">
-            <div class="st"> VIEW SWING SET IN YOUR GARDEN</div>
 
-            <div class="">
-                <div>BACKGROUND</div>
-                <div class="img_icon"><img ng-repeat="x in background" ng-src="{{x.url}}" ng-class="{'selected':select_b[$index]}" ng-click="selectedValue.s_background=x.url;changeselect($index)">
-                    <!-- <img ng-src="img/frame/background_upload.jpg"> -->
-                </div>
-            </div>
-            <div class="pd_t10">
-                <!-- custom_swingList contains all the details needed in json format -->
-
-                <div>FRAME SIZE</div>
-
-                <img class="frame_icon" src="{{selectedValue.s_frame.img}}"></img>
-                <select class="select-frame form-control form-control-lg " ng-model="selectedValue.s_frame" ng-options="frame.frame for frame in custom_swingList "
-                    ng-change="empty_SelectedValue()">
-                 </select>
-            </div>
-            <div class="pd_t10" ng-if="selectedValue.s_frame">
-                <!-- loop trim from above select frame(from selectedValue.frame) -->
-                <div>TRIM COLOR</div>
-                <div>
-                    <div class="trim_color" ng-class="{'selected':selectedValue.s_trim==x}" ng-repeat="x in selectedValue.s_frame.trim" title="{{x.name}}"
-                        ng-style="{'background':x.color}" ng-click="selectedValue.s_trim=x;">
-                    </div>
-                </div>
-                <!-- <select class="select-trim form-control form-control-lg select-trim" ng-model="selectedValue.trim" ng-options="x.name for x in selectedValue.frame.trim"> </select>-->
-
-
-            </div>
-            <div class="pd_t10" ng-if="selectedValue.s_frame.slide">
-                <!-- loop trim from above select frame(from selectedValue.frame) -->
-                <div>SLIDE COLOR</div>
-                <div>
-                    <div class="trim_color" ng-class="{'selected':selectedValue.s_slide==x}" ng-repeat="x in selectedValue.s_frame.slide" title="{{x.name}}"
-                        ng-style="{'background':x.color}" ng-click="selectedValue.s_slide=x;">
-                    </div>
-                </div>
-                <!-- <select class="select-trim form-control form-control-lg select-trim" ng-model="selectedValue.trim" ng-options="x.name for x in selectedValue.frame.trim"> </select>-->
-
-
-            </div>
-
-            <div class="pd_t10" ng-show="selectedValue.s_frame.swing">
-                <!-- loop Swing from above select trim(from selectedValue.trim) -->
-                <div>SWING</div>
-                <div class="swing_icon">
-                    <img ng-repeat="x in selectedValue.s_frame.swing" ng-class="{'selected':selectedValue.s_swing==x}" ng-src="{{x.img}}" ng-click="selectedValue.s_swing=x;(x.hidenext)? (selectedValue.s_swing2=null): (selectedValue.s_swing2)"
-                        title="{{x.name}}"> </div>
-                <!-- * set selectedValue.s_swing2  to 'null' so that there wont be confilt when user select item in  swing2 and then select swing1() -->
-                <!-- <select class="select-trim form-control form-control-lg select-swing" ng-if="selectedValue.trim && selectedValue.frame" ng-model="selectedValue.swing"
-                    ng-options="x.name disable when x.disabled for x in selectedValue.trim.swing"> </select>-->
-
-            </div>
-            <div class="pd_t10" ng-show="selectedValue.s_frame.swing2 && !selectedValue.s_swing.hidenext">
-                <!-- loop Swing from above select trim(from selectedValue.trim) -->
-                <div>SWING 2</div>
-                <div class="swing_icon">
-                    <img ng-repeat="x in selectedValue.s_frame.swing2" ng-class="{'selected':selectedValue.s_swing2==x}" ng-src="{{x.img}}" ng-click="selectedValue.s_swing2=x;(x.hidenext)?(selectedValue.s_swing3=null): selectedValue.s_swing3"
-                        title="{{x.name}}"> </div>
-                <!-- <select class="select-trim form-control form-control-lg select-swing" ng-if="selectedValue.trim && selectedValue.frame" ng-model="selectedValue.swing"
-                    ng-options="x.name disable when x.disabled for x in selectedValue.trim.swing"> </select>-->
-
-            </div>
-            <div class="pd_t10" ng-show="selectedValue.s_frame.swing3 && !selectedValue.s_swing2.hidenext">
-                <!-- loop Swing from above select trim(from selectedValue.trim) -->
-                <div>SWING 3</div>
-                <div class="swing_icon">
-                    <img ng-repeat="x in selectedValue.s_frame.swing3" ng-class="{'selected':selectedValue.s_swing3==x}" ng-src="{{x.img}}" ng-click="selectedValue.s_swing3=x"
-                        title="{{x.name}}"> </div>
-                <!-- <select class="select-trim form-control form-control-lg select-swing" ng-if="selectedValue.trim && selectedValue.frame" ng-model="selectedValue.swing"
-                    ng-options="x.name disable when x.disabled for x in selectedValue.trim.swing"> </select>-->
-
-            </div>
-
-        </div>
     </div>
 
 </div>
