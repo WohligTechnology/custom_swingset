@@ -775,7 +775,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                             icon: "img/frame/frame4/teal/swing1_5_icon.png"
                         }
                     ]
-
                 }],
                 slide: [{
                     name: "Lime Slide",
@@ -828,7 +827,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         }
         $scope.layermove = function (event) {
             if ($scope.mousedown) {
-                console.log(event);
+                // console.log(event);
                 $(".inside_canvas").css("top", event.clientY - 200);
                 $(".inside_canvas").css("left", event.clientX - 250);
 
