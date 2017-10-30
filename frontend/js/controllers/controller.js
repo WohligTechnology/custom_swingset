@@ -831,12 +831,18 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 $(".inside_canvas").css("top", event.clientY - 200);
                 $(".inside_canvas").css("left", event.clientX - 250);
 
+
+                // $(".inside_canvas").css("top", event.clientY + event.offsetY - 200);
+                // $(".inside_canvas").css("left", event.clientX + event.offsetX - 250);
+
+
+
             }
         }
         $scope.mousedownfun = function (event) {
             $scope.mousedown = true;
             console.log("inside mouse down", $scope.mousedown)
-            console.log("offset", event.clientY, event.clientX);
+            console.log("clientX", event.clientX, "offestX", event.offsetX);
         }
         $scope.mouseupfun = function () {
             $scope.mousedown = false;
